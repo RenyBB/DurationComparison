@@ -75,7 +75,6 @@ for (i=0; i<stimuli_combinations.length; i ++) {
 var n_reps_per_stim = 2;
 var n_trials_types = stimuli_combinations.length ;
 var n_trials = n_reps_per_stim*n_trials_types;
-var test = 0;
 
   // Collect system information
   var setup_info = {
@@ -260,13 +259,9 @@ var testInstructions3 = {
 // Define stimuli for the test phase
 var Interval1_Prompt = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: [],
+    stimulus: 'Next pair of intervals',
     choices: ['Play Interval 1'],
-    post_trial_gap: post_prompt_iti,
-    on_start: function(trial) {
-        if (test == 0) {'First pair of intervals'}
-        else {'Next pair of intervals'}
-    }
+    post_trial_gap: post_prompt_iti
 };
 
 
