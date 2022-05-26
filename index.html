@@ -6,6 +6,8 @@
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-browser-check@1.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-audio-button-response@1.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-instructions@1.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.0.0"></script>
     <script src="DurationComparison/StimulusConditionCombinations.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.0.0/css/jspsych.css">
 </head>
@@ -72,7 +74,7 @@ for (i=0; i<stimuli_combinations.length; i ++) {
 
 
 // Define number of repetitions per stimulus and total number of trials
-var n_reps_per_stim = 2;
+var n_reps_per_stim = 1;
 var n_trials_types = stimuli_combinations.length ;
 var n_trials = n_reps_per_stim*n_trials_types;
 
@@ -86,7 +88,7 @@ var n_trials = n_reps_per_stim*n_trials_types;
  //welcome message
     var welcome_message = {
         type: jsPsychHtmlButtonResponse,
-        stimulus: `<p>In this task you will compare the durations of intervals. </p>
+        stimulus: `<p>This task contains audio clips. </p>
     <p>  Please make sure you are in a quiet and relaxed environment and have a pair of headphones or speakers.</p>
     <p>  You will now hear a tone so that you can adjust the volume of the audio to a comfortable level.<br>Set the volume low in case it is too loud!</p>`,
     choices: ['Continue']
@@ -122,18 +124,20 @@ timeline.push(adjust_volume);
 
 // Test phase instructions
    var testInstructions = {
-          type: jsPsychHtmlButtonResponse,
-          stimulus: `<p> You will hear two intervals one after the other. </p>
-          <p> Your task will be to decide if the first or second interval was longer in duration. </p> 
-         <p> The intervals will contain audio beeps with different structures. </p>  
-         <p> We will now go through the 4 different structures. </p>`,
-         choices: ['Continue']    
+          type: jsPsychInstructions,
+          pages: [`<p> In tis task, you will listen to two audio clips. 
+         <br> The clips will consist of a constant tone or different patterns of tones, and will go for different lengths of time. 
+         <br> You will need to say which of the two clips seemed longer to you.
+         <br><br> We will now go through the different types of audio clips you will hear in the task. </p>`],
+         allow_backward: false,
+         show_clickable_nav: true,
+         button_label_next: ['Continue']
     };
     timeline.push(testInstructions);
 
 var Stim1_Prompt = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'The first type of interval contains a continuous sound.',
+    stimulus: 'The first type of clip consists of a constant tone.',
     choices: ['Play'],
     post_trial_gap: post_prompt_iti
 };
@@ -158,7 +162,7 @@ var Stim1_loop ={
 
 var Stim2_Prompt = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'The second type of interval has a beep signaling the start and end of the interval.<br>There is no other sound between the two beeps.',
+    stimulus: 'The second type of clip has a tone signaling the start of the clip and a second tone signalling the end of the interval.<br>There is no other sound between the two tone.',
     choices: ['Play'],
     post_trial_gap: post_prompt_iti
 };
@@ -182,7 +186,7 @@ var Stim2_loop ={
 
 var Stim3_Prompt = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'The third type of interval has a beep signaling the start and end of the interval.<br>There are rhythmic beeps between the start and the end.',
+    stimulus: 'The third type of clip has a tone signaling the start and end of the clip.<br>There are rhythmic tones between the start and the end.',
     choices: ['Play'],
     post_trial_gap: post_prompt_iti
 };
@@ -206,7 +210,7 @@ var Stim3_loop ={
 
 var Stim4_Prompt = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'The last type of interval has a beep signaling the start and end of the interval.<br>There are arhythmic beeps between the start and the end.',
+    stimulus: 'The last type of clip has a tone signaling the start and end of the interval.<br>There are arhythmic tones between the start and the end.',
     choices: ['Play'],
     post_trial_gap: post_prompt_iti
 };
@@ -240,17 +244,19 @@ var Stim4_loop ={
 // Test phase instructions
 var testInstructions2 = {
           type: jsPsychHtmlButtonResponse,
-          stimulus: `<p> The two intervals you will be asked to compare will have different structures. Continue for an example of the task.</p>`,
+          stimulus: `<p> The two audio clips you will be asked to compare will have different structures. Continue for an example of the task.</p>`,
          choices: ['Continue']    
     };
     timeline.push(testInstructions2);
 
     // Test phase instructions
 var testInstructions3 = {
-          type: jsPsychHtmlButtonResponse,
-          stimulus: `<p> You are now ready for the main task.<br>Please do not try use any counting strategies to complete the task. All intervals are very short and counting will be detrimental.<br>Just pay attention to how long the intervals last.</p>`,
-         choices: ['Continue'],
-         on_start: function () {
+          type: jsPsychIntructions,
+          pages: [`<p> You are now ready for the main task.<br>Please do not try use any counting strategies to complete the task. All audio clips are very short and counting will be detrimental.<br>Just pay attention to how long the audio clips last.</p>`],
+          button_label_next: ['Continue'],
+          show_clickable_nav: true,
+          allow_backward: false,
+          on_start: function () {
             // set progress bar to 0 at the start of experiment
             jsPsych.setProgressBar(0);
         }    
@@ -259,16 +265,16 @@ var testInstructions3 = {
 // Define stimuli for the test phase
 var Interval1_Prompt = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'Next pair of intervals',
-    choices: ['Play Interval 1'],
+    stimulus: 'Next pair of audio clips',
+    choices: ['Play Clip 1'],
     post_trial_gap: post_prompt_iti
 };
 
 
 var Interval1_Prompt_Training = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: ['You will now hear an example pair of intervals.'],
-    choices: ['Play Interval 1'],
+    stimulus: ['You will now hear an example pair of audio clips.'],
+    choices: ['Play Clip 1'],
     post_trial_gap: post_prompt_iti
 };
 
@@ -276,7 +282,7 @@ var Interval1_Prompt_Training = {
 var Interval2_Prompt = {
     type: jsPsychHtmlButtonResponse,
     stimulus: '',
-    choices: ['Play Interval 2'],
+    choices: ['Play Clip 2'],
     post_trial_gap: post_prompt_iti
 };
 
@@ -302,8 +308,8 @@ var Interval2_Training = {
     // Pitch dicrimination question - appears in both training and testing phase
 var DuractionComparison_Training = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'Was the 1st or the 2nd interval longer?',
-    choices: ['First interval was longer', 'Second interval was longer', 'The intervals were equal'],
+    stimulus: 'Was the 1st or the 2nd clip longer?',
+    choices: ['First clip was longer', 'Second clip was longer', 'The clips were equal'],
     on_finish: function (data) {
             data.first_stimulus = 'Stimuli/DurationComparison/continuous_1000ms.wav';
             data.second_stimulus = 'Stimuli/DurationComparison/anis_3000ms_2Hz.wav';
@@ -323,7 +329,7 @@ var DuractionComparison_Feedback = {
     if(last_trial_correct){
       return "<p>Your response was correct!</p>"; // the parameter value has to be returned from the function
     } else {
-      return "<p>Your response was not correct - the second interval was longer.</p>"; // the parameter value has to be returned from the function
+      return "<p>Your response was not correct - the second clip was longer.</p>"; // the parameter value has to be returned from the function
     }
   },
     choices: ['Continue'],  
@@ -350,8 +356,8 @@ var Interval2_Stimulus = {
     // Pitch dicrimination question - appears in both training and testing phase
 var DuractionComparison_Resp = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'Was the 1st or the 2nd interval longer?',
-    choices: ['First interval was longer', 'Second interval was longer', 'The intervals were equal'],
+    stimulus: 'Was the 1st or the 2nd clip longer?',
+    choices: ['First clip was longer', 'Second clip was longer', 'The clip were equal'],
     on_finish: function (data) {
             data.test = 1;
             console.log(jsPsych.data.get().select('test').values.length);
@@ -363,7 +369,13 @@ var DuractionComparison_Resp = {
     }
 
 };
-
+var trial = {
+  type: jsPsychSurveyText,
+  questions: [
+    {prompt: 'Thank you for completing this task!<br>We will appreciate it if you could briefly describe what the durations of the 4 types of audio clips were like to you.<br>Did any type seem particularly different in duration to the others?'}
+  ],
+    button_label: ['Continue']
+}
 
 var training_procedure = {
         timeline: [Interval1_Prompt_Training,Interval1_Training,Interval2_Prompt,Interval2_Training, DuractionComparison_Training, DuractionComparison_Feedback],
@@ -383,7 +395,7 @@ var training_procedure = {
 // Debrief
       var DebriefMessage = {
           type: jsPsychHtmlButtonResponse,
-          stimulus: ['Thank you for completing this task.'],
+          stimulus: [''],
           choices: ['See your data']
       };
       timeline.push(DebriefMessage);
