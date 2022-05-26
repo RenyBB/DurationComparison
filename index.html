@@ -255,7 +255,7 @@ var Interval2_Prompt = {
 
 var Interval1_Training = {
     type: jsPsychAudioButtonResponse,
-    stimulus:'Stimuli/DurationComparison/continuous_1000ms.wav',
+    stimulus: stimulus_path.concat('continuous_1000ms.wav'),
     choices: '',
     trial_ends_after_audio:true,
     post_trial_gap: post_prompt_iti
@@ -263,7 +263,7 @@ var Interval1_Training = {
 
 var Interval2_Training = {
     type: jsPsychAudioButtonResponse,
-    stimulus: 'Stimuli/DurationComparison/anis_3000ms_2Hz.wav',
+    stimulus: stimulus_path.concat('anis_3000ms_2Hz.wav'),
     choices: '',
     trial_ends_after_audio:true,
     post_trial_gap: post_prompt_iti
