@@ -243,15 +243,17 @@ var Stim4_loop ={
 
 // Test phase instructions
 var testInstructions2 = {
-          type: jsPsychHtmlButtonResponse,
-          stimulus: `<p> The two audio clips you will be asked to compare will have different structures. Continue for an example of the task.</p>`,
-         choices: ['Continue']    
+          type: jsPsychInstructions,
+          pages: [`<p> The two audio clips you will be asked to compare will have different structures. Continue for an example of the task.</p>`],
+          button_label_next: ['Continue'],
+          show_clickable_nav: true,
+          allow_backward: false,  
     };
     timeline.push(testInstructions2);
 
     // Test phase instructions
 var testInstructions3 = {
-          type: jsPsychIntructions,
+          type: jsPsychInstructions,
           pages: [`<p> You are now ready for the main task.<br>Please do not try use any counting strategies to complete the task. All audio clips are very short and counting will be detrimental.<br>Just pay attention to how long the audio clips last.</p>`],
           button_label_next: ['Continue'],
           show_clickable_nav: true,
