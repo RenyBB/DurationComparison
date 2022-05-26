@@ -6,7 +6,7 @@
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-browser-check@1.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-audio-button-response@1.0.0"></script>
-    <script src="DurationComparisonStimuli/StimulusConditionCombinations.js"></script>
+    <script src="DurationComparison/StimulusConditionCombinations.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.0.0/css/jspsych.css">
 </head>
 <body>
@@ -55,7 +55,7 @@ all_durations_shuffled = jsPsych.randomization.shuffle(all_durations)
 selected_sampling_rate = jsPsych.randomization.sampleWithReplacement(all_sampling_rates, 1)[0]
 for (i=0; i<stimuli_combinations.length; i ++) {stimuli_combinations[i].duration = all_durations_shuffled[stimuli_combinations[i].pairing_id-1]; stimuli_combinations[i].sampling_rate = selected_sampling_rate;  }
 
-var stimulus_path = "Stimuli/DurationComparison/"
+var stimulus_path = "DurationComparison/"
 
 
 for (i=0; i<stimuli_combinations.length; i ++) {
@@ -88,8 +88,7 @@ var n_trials = n_reps_per_stim*n_trials_types;
     var welcome_message = {
         type: jsPsychHtmlButtonResponse,
         stimulus: `<p>In this task you will compare the durations of intervals. </p>
-    <p>  Please make sure you are in a quiet and relaxed environment and have a pair of headphones or speakers.</p>
-    <p>  You will now hear a tone so that you can adjust the volume of the audio to a comfortable level.<br>SET THE VOLUME LOW IN CASE IT IS TOO LOUD! </p>`,
+    <p>  SET THE VOLUME LOW IN CASE IT IS TOO LOUD! You can adjust it later on while the example soudns play.</p>`,
     choices: ['Continue']
     };
   timeline.push(welcome_message); 
@@ -102,56 +101,7 @@ var n_trials = n_reps_per_stim*n_trials_types;
       };
   timeline.push(preload);*/
 
-  // Adjust volume
-  var adjust_volume = {
-    type: jsPsychAudioButtonResponse,
-    stimulus: 'Stimuli/VolumeAdjustmentStim.mp3',
-    prompt: 'Adjust the volume to a comfortable level.',
-    choices: ['Continue'],
-    response_ends_trial: true
-};
-timeline.push(adjust_volume);
 
-
-/*// Training instructions
-      var trainInstructions = {
-          type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p> You will hear two sounds one after the other. </p>
-    <p> Then your task will be to report if the second sound had higher pitch than the first sound (the pitch went up), </p>
-    <p> OR the second sound had lower pitch than the first sound (the pitch went down). </p>
-    <p> We will first do two examples for training. </p> <p>Press any key to begin.</p>`
-    };
-
-
-// Define stimuli for the training phase
-var first_training_sound = {
-    obj_type: 'sound',
-    file: jsPsych.timelineVariable('first_train_sound_filename'),
-    show_start_time: 500
-};
-
-var second_training_sound = {
-    obj_type: 'sound',
-    file: jsPsych.timelineVariable('second_train_sound_filename'),
-    show_start_time: 1500
-};
-var training_phase = {
-    type: jsPsychPsychophysics,
-    stimuli: [first_training_sound, second_training_sound],
-    trial_duration: 2500,
-    response_ends_trial: false,
-    background_color: 'rgb(125,125,125)',
-    on_finish: function(data){
-        data.first_stimulus = jsPsych.timelineVariable('first_train_sound');
-        data.second_stimulus = jsPsych.timelineVariable('second_train_sound');
-        if (data.first_stimulus.match(/\d+/)[0]> data.second_stimulus.match(/\d+/)[0]  ) {
-                data.correct_response = 'arrowdown';
-            } else  {
-                data.correct_response = 'arrowup';
-            };
-    }
-
-};*/
 
 // Test phase instructions
    var testInstructions = {
@@ -172,7 +122,7 @@ var Stim1_Prompt = {
 };
 var Stim1_Example = {
     type: jsPsychAudioButtonResponse,
-    stimulus: 'Stimuli/DurationComparison/continuous_1000ms.wav',
+    stimulus: stimulus_path.concat('continuous_1000ms.wav'),
     choices: ['Play again', 'Continue'],
     post_trial_gap: post_prompt_iti
 };
@@ -196,7 +146,7 @@ var Stim2_Prompt = {
 };
 var Stim2_Example = {
     type: jsPsychAudioButtonResponse,
-    stimulus: 'Stimuli/DurationComparison/empty_2500ms.wav',
+    stimulus: stimulus_path.concat('empty_2500ms.wav'),
     choices: ['Play again', 'Continue'],
     post_trial_gap: post_prompt_iti
 };
@@ -219,7 +169,7 @@ var Stim3_Prompt = {
 };
 var Stim3_Example = {
     type: jsPsychAudioButtonResponse,
-    stimulus: 'Stimuli/DurationComparison/iso_3000ms_2Hz.wav',
+    stimulus: stimulus_path.concat('iso_3000ms_2Hz.wav'),
     choices: ['Play again', 'Continue'],
     post_trial_gap: post_prompt_iti
 };
@@ -242,7 +192,7 @@ var Stim4_Prompt = {
 };
 var Stim4_Example = {
     type: jsPsychAudioButtonResponse,
-    stimulus: 'Stimuli/DurationComparison/anis_3000ms_2Hz.wav',
+    stimulus: stimulus_path.concat('anis_3000ms_2Hz.wav'),
     choices: ['Play again', 'Continue'],
     post_trial_gap: post_prompt_iti
 };
