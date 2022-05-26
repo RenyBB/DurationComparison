@@ -75,7 +75,7 @@ for (i=0; i<stimuli_combinations.length; i ++) {
 var n_reps_per_stim = 2;
 var n_trials_types = stimuli_combinations.length ;
 var n_trials = n_reps_per_stim*n_trials_types;
-
+var test = 0;
 
   // Collect system information
   var setup_info = {
@@ -88,11 +88,29 @@ var n_trials = n_reps_per_stim*n_trials_types;
     var welcome_message = {
         type: jsPsychHtmlButtonResponse,
         stimulus: `<p>In this task you will compare the durations of intervals. </p>
-    <p>  SET THE VOLUME LOW IN CASE IT IS TOO LOUD! You can adjust it later on while the example soudns play.</p>`,
+    <p>  Please make sure you are in a quiet and relaxed environment and have a pair of headphones or speakers.</p>
+    <p>  You will now hear a tone so that you can adjust the volume of the audio to a comfortable level.<br>SET THE VOLUME LOW IN CASE IT IS TOO LOUD! </p>`,
     choices: ['Continue']
     };
   timeline.push(welcome_message); 
 
+
+  /* Preload stimuli
+      var preload = {
+          type: jsPsychPreload,
+          audio: [],
+      };
+  timeline.push(preload);*/
+
+  // Adjust volume
+  var adjust_volume = {
+    type: jsPsychAudioButtonResponse,
+    stimulus: 'VolumeAdjustmentStim.mp3',
+    prompt: 'Adjust the volume to a comfortable level.',
+    choices: ['Continue'],
+    response_ends_trial: true
+};
+timeline.push(adjust_volume);
 
   /* Preload stimuli
       var preload = {
@@ -238,7 +256,19 @@ var testInstructions3 = {
 // Define stimuli for the test phase
 var Interval1_Prompt = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'You will now hear a pair of intervals.',
+    stimulus: [],
+    choices: ['Play Interval 1'],
+    post_trial_gap: post_prompt_iti
+    on_start: function(trial) {
+        if (test == 0) {'First pair of intervals'}
+        else {'Next pair of intervals'}
+    }
+};
+
+
+var Interval1_Prompt_Training = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: ['You will now hear an example pair of intervals.'],
     choices: ['Play Interval 1'],
     post_trial_gap: post_prompt_iti
 };
@@ -337,7 +367,7 @@ var DuractionComparison_Resp = {
 
 
 var training_procedure = {
-        timeline: [Interval1_Prompt,Interval1_Training,Interval2_Prompt,Interval2_Training, DuractionComparison_Training, DuractionComparison_Feedback],
+        timeline: [Interval1_Prompt_Training,Interval1_Training,Interval2_Prompt,Interval2_Training, DuractionComparison_Training, DuractionComparison_Feedback],
     };
 
 // Push testing
