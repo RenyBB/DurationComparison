@@ -1,0 +1,13 @@
+first_interval,second_interval
+continuous,empty
+continuous,iso
+continuous,anis
+empty,iso
+empty,anis
+iso,anis
+empty,continuous
+iso,continuous
+anis,continuous
+iso,empty
+anis,empty
+anis,iso
