@@ -369,7 +369,7 @@ var DuractionComparison_Resp = {
     }
 
 };
-var trial = {
+var FreeText = {
   type: jsPsychSurveyText,
   questions: [
     {prompt: 'Thank you for completing this task!<br>We will appreciate it if you could briefly describe what the durations of the 4 types of audio clips were like to you.<br>Did any type seem particularly different in duration to the others?'}
@@ -389,7 +389,7 @@ var training_procedure = {
         repetitions: 1//n_reps_per_stim 
     };
 
-    timeline.push(training_procedure, testInstructions3, test_procedure);
+    timeline.push(training_procedure, testInstructions3, test_procedure, FreeText);
 
     
 // Debrief
