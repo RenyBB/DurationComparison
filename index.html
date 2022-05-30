@@ -89,8 +89,8 @@ var n_trials = n_reps_per_stim*n_trials_types;
     var welcome_message = {
         type: jsPsychHtmlButtonResponse,
         stimulus: `<p>This task contains audio clips. </p>
-    <p>  Please make sure you are in a quiet and relaxed environment and have a pair of headphones or speakers.</p>
-    <p>  You will now hear a tone so that you can adjust the volume of the audio to a comfortable level.<br>Set the volume low in case it is too loud!</p>`,
+    <p>  Please make sure you are in a quiet and relaxed environment and have headphones or speakers.</p>
+    <p>  You’ll now hear a tone so that you can adjust the volume of the audio to a comfortable level.<br>Set the volume low in case it is too loud!</p>`,
     choices: ['Continue']
     };
   timeline.push(welcome_message); 
@@ -125,10 +125,10 @@ timeline.push(adjust_volume);
 // Test phase instructions
    var testInstructions = {
           type: jsPsychInstructions,
-          pages: [`<p> You will listen to two audio clips that consist of a constant tone or different patterns of tones. 
+          pages: [`<p> You’ll listen to two audio clips that consist of a constant tone or different patterns of tones. 
          <br> The clips will go for different lengths of time. 
-         <br> You will need to say which of the two clips seemed longer to you.
-         <br><br> We will now go through the different types of audio clips you will hear in the task. </p>`],
+         <br> You’ll need to say which of the two clips seemed longer to you.
+         <br><br> We’ll now go through the different types of audio clips you will hear in the task. </p>`],
          allow_backward: false,
          show_clickable_nav: true,
          button_label_next: ['Continue']
@@ -244,7 +244,7 @@ var Stim4_loop ={
 // Test phase instructions
 var testInstructions2 = {
           type: jsPsychInstructions,
-          pages: [`<p> The two audio clips you will be asked to compare will have different structures. Continue for an example of the task.</p>`],
+          pages: [`<p> The two audio clips you’ll be asked to compare will have different structures. Continue for an example of the task.</p>`],
           button_label_next: ['Continue'],
           show_clickable_nav: true,
           allow_backward: false,  
@@ -254,7 +254,7 @@ var testInstructions2 = {
     // Test phase instructions
 var testInstructions3 = {
           type: jsPsychInstructions,
-          pages: [`<p> You are now ready for the main task.<br>Please do not try use any counting strategies to complete the task. All audio clips are very short and counting will be detrimental.<br>Just pay attention to how long the audio clips last.</p>`],
+          pages: [`<p> You are now ready for the main task.<br>Please do not try use any counting strategies to complete the task. All audio clips are very short and counting won't help you.<br>Just pay attention to how long the audio clips last.</p>`],
           button_label_next: ['Continue'],
           show_clickable_nav: true,
           allow_backward: false,
