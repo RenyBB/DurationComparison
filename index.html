@@ -85,14 +85,16 @@ var n_trials = n_reps_per_stim*n_trials_types;
   timeline.push(setup_info);
 
 
- //welcome message
-    var welcome_message = {
-        type: jsPsychHtmlButtonResponse,
-        stimulus: `<p>This task contains audio clips. </p>
-    <p>  Please make sure you are in a quiet and relaxed environment and have headphones or speakers.</p>
-    <p>  You’ll now hear a tone so that you can adjust the volume of the audio to a comfortable level.<br>Set the volume low in case it is too loud!</p>`,
-    choices: ['Continue']
-    };
+     const welcome_message = {
+    type: jsPsychInstructions,
+    pages: [`<p>This task contains audio clips. </p>
+    <p>  Please make sure you are in a quiet and relaxed environment and have a pair of headphones or speakers ready.</p>
+    <p>  <br>You will next hear a continuous beep so that you can adjust the volume of the audio - adjust the volume to a level that feels comfortable to you and at which you can hear clearly without straining.<br> <b> Right now, set your volume to a low setting in case the sound is loud! </b> </p>`],
+    show_clickable_nav: true,
+    allow_backward: false,
+    key_forward: 'ArrowRight'
+  };
+
   timeline.push(welcome_message); 
 
 
