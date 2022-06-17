@@ -201,18 +201,41 @@ var Interval2_Training = {
     trial_ends_after_audio:true,
     post_trial_gap: post_prompt_iti
 };
+    
+       
+        // Pitch dicrimination question - appears in both training and testing phase
+var DuractionComparison_Training1 = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: 'Was the 1st or the 2nd clip longer?',
+    choices: ['First clip was longer', 'Second clip was longer', 'The clips were equal'],
+    on_finish: function (data) {
+            data.first_stimulus = 'Stimuli/DurationComparison/iso_3000ms_2Hz.wav';
+            data.second_stimulus = 'Stimuli/DurationComparison/empty_1500ms.wav';
+            if (data.response == 0) {data.correct = 1}
+            else {data.correct = 0}
+    }
+}
 
+var DuractionComparison_Feedback1 = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: function(){
+    // The feedback stimulus is a dynamic parameter because we can't know in advance whether
+    // the stimulus should be 'correct' or 'incorrect'.
+    // Instead, this function will check the accuracy of the last response and use that information to set
+    // the stimulus value on each trial.
+    var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
+    if(last_trial_correct){
+      return "<p>Your answer was correct!<br>The duration between the first and last beep in Clip 1 was longer than the duration between the first and last beep in Clip 2.<br>(Note that Clip 2 contained only two beeps.)</p>"; // the parameter value has to be returned from the function
+    } else {
+      return "<p>That wasn't the correct answer.<br>The duration between the first and last beep in Clip 1 was longer than the duration between the first and last beep in Clip 2.<br>(Note that Clip 2 contained only two beeps.)</p>"; // the parameter value has to be returned from the function
+    }
+  },
+    choices: ['Continue to Example 2', 'Repeat Example 1'],  
+}
     
     
+
 var Interval3_Training = {
-    type: jsPsychAudioButtonResponse,
-    stimulus: stimulus_path.concat('anis_3000ms_2Hz.wav'),
-    choices: '',
-    trial_ends_after_audio:true,
-    post_trial_gap: post_prompt_iti
-};
-
-var Interval4_Training = {
     type: jsPsychAudioButtonResponse,
     stimulus: stimulus_path.concat('continuous_1000ms.wav'),
     choices: '',
@@ -221,30 +244,26 @@ var Interval4_Training = {
 };
 
     
+var Interval4_Training = {
+    type: jsPsychAudioButtonResponse,
+    stimulus: stimulus_path.concat('anis_3000ms_2Hz.wav'),
+    choices: '',
+    trial_ends_after_audio:true,
+    post_trial_gap: post_prompt_iti
+};
+
 
     
-        // Pitch dicrimination question - appears in both training and testing phase
-var DuractionComparison_Training1 = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: 'Was the 1st or the 2nd clip longer?',
-    choices: ['First clip was longer', 'Second clip was longer', 'The clips were equal'],
-    on_finish: function (data) {
-            data.first_stimulus = 'Stimuli/DurationComparison/iso_1000ms_2Hz.wav';
-            data.second_stimulus = 'Stimuli/DurationComparison/empty_1500ms.wav';
-            if (data.response == 1) {data.correct = 1}
-            else {data.correct = 0}
-    }
-}
 
-    
+ 
     // Pitch dicrimination question - appears in both training and testing phase
 var DuractionComparison_Training2 = {
     type: jsPsychHtmlButtonResponse,
     stimulus: 'Was the 1st or the 2nd clip longer?',
     choices: ['First clip was longer', 'Second clip was longer', 'The clips were equal'],
     on_finish: function (data) {
-            data.first_stimulus = 'Stimuli/DurationComparison/anis_3000ms_2Hz.wav';
-            data.second_stimulus = 'Stimuli/DurationComparison/continuous_1000ms.wav';
+            data.first_stimulus = 'Stimuli/DurationComparison/continuous_1000ms.wav';
+            data.second_stimulus = 'Stimuli/DurationComparison/anis_3000ms_2Hz.wav';
             if (data.response == 0) {data.correct = 1}
             else {data.correct = 0}
     }
@@ -259,31 +278,16 @@ var DuractionComparison_Feedback2 = {
     // the stimulus value on each trial.
     var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
     if(last_trial_correct){
-      return "<p>Your answer was correct!<br>The duration between the first and last beep in Clip 1 was longer than the duration of the constant beep in Clip 2.</p>"; // the parameter value has to be returned from the function
+      return "<p>Your answer was correct!<br>The duration of the constant beep in Clip 1 was shorter than the duration between the first and last beep in Clip 2.</p>"; // the parameter value has to be returned from the function
     } else {
-      return "<p>That wasn't the correct answer.<br>The duration between the first and last beep in Clip 1 was longer than the duration of the constant beep in Clip 2.</p>"; // the parameter value has to be returned from the function
+      return "<p>That wasn't the correct answer.<br>The duration of the constant beep in Clip 1 was shorter than the duration between the first and last beep in Clip 2.</p>"; // the parameter value has to be returned from the function
     }
   },
-    choices: ['Continue to Example 2', 'Repeat Example 1'],  
+    choices: ['Continue to the Main task', 'Repeat Example 2'],  
 }
 
 
-var DuractionComparison_Feedback1 = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: function(){
-    // The feedback stimulus is a dynamic parameter because we can't know in advance whether
-    // the stimulus should be 'correct' or 'incorrect'.
-    // Instead, this function will check the accuracy of the last response and use that information to set
-    // the stimulus value on each trial.
-    var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
-    if(last_trial_correct){
-      return "<p>Your answer was correct!<br>The duration between the first and last beep in Clip 1 was shorter than the duration between the first and last beep in Clip 2.</p>"; // the parameter value has to be returned from the function
-    } else {
-      return "<p>That wasn't the correct answer.<br>The duration between the first and last beep in Clip 1 was shorter than the duration between the first and last beep in Clip 2.</p>"; // the parameter value has to be returned from the function
-    }
-  },
-    choices: ['Continue to Main Task', 'Repeat Example 2'],  
-}
+
 
 
 var Interval1_Stimulus = {
