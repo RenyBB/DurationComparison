@@ -331,7 +331,7 @@ var FreeText = {
 }
 
 var training_procedure1 = {
-        timeline: [Interval1_Prompt_Training,Interval1_Training,Interval2_Prompt,Interval2_Training, DuractionComparison_Training1, DuractionComparison_Feedback],
+        timeline: [Interval1_Prompt_Training,Interval1_Training,Interval2_Prompt,Interval2_Training, DuractionComparison_Training1, DuractionComparison_Feedback1],
     };
 var training_procedure2 = {
         timeline: [Interval1_Prompt_Training,Interval3_Training,Interval2_Prompt,Interval4_Training, DuractionComparison_Training2, DuractionComparison_Feedback2],
@@ -344,7 +344,7 @@ var training_procedure2 = {
         repetitions: 1//n_reps_per_stim 
     };
 
-    timeline.push(training_procedure, testInstructions3, test_procedure, FreeText);
+    timeline.push(training_procedure1,training_procedure2, testInstructions3, test_procedure, FreeText);
 
     
 // Debrief
