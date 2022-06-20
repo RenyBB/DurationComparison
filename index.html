@@ -67,7 +67,19 @@ for (i=0; i<stimuli_combinations.length; i ++) {
             {stimuli_combinations[i].second_interval_filename = stimulus_path.concat(stimuli_combinations[i].second_interval).concat("_").concat(stimuli_combinations[i].duration).concat("ms").concat(".wav")}  
 }
 
-
+for (i=0; i<stimuli_combinations.length; i ++) {
+    if (stimuli_combinations[i].first_interval == "iso" || stimuli_combinations[i].first_interval == "anis" || stimuli_combinations[i].first_interval == "empty")
+            {stimuli_combinations[i].instructions_first_interval = ['Consider the duration from the start of the first beep to the end of the last beep.']}
+    else if (stimuli_combinations[i].first_interval == "continuous")
+            {stimuli_combinations[i].instructions_first_interval = ['Consider the duration from the start of the constant beep until the end of the constant beep.'] }  
+    
+    if (stimuli_combinations[i].second_interval == "iso" || stimuli_combinations[i].second_interval == "anis" || stimuli_combinations[i].second_interval == "empty")
+            {stimuli_combinations[i].instructions_second_interval = ['Consider the duration from the start of the first beep to the end of the last beep.']}
+    else if (stimuli_combinations[i].second_interval == "continuous")
+            {stimuli_combinations[i].instructions_second_interval = ['Consider the duration from the start of the constant beep until the end of the constant beep.'] }  
+    
+}
+    
 
 // Define number of repetitions per stimulus and total number of trials
 var n_reps_per_stim = 1;
@@ -160,13 +172,7 @@ var testInstructions3 = {
         }    
     };
 
-// Define stimuli for the test phase
-var Interval1_Prompt = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: 'Next pair of audio clips',
-    choices: ['Play Clip 1'],
-    post_trial_gap: post_prompt_iti
-};
+
 
 
 var Interval1_Prompt_Training_Ex1 = {
@@ -196,26 +202,24 @@ var Interval2_Prompt_Training_E2 = {
     post_trial_gap: post_prompt_iti
 };
 
-var Interval2_Prompt = {
+
+    
+
+    // Define stimuli for the test phase
+var Interval1_Prompt = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: '',
+    stimulus: function () {return 'Next pair of audio clips. In the first clip'.concat(jsPsych.timelineVariable('instructions_first_interval')},
+    choices: ['Play Clip 1'],
+    post_trial_gap: post_prompt_iti
+};
+
+    var Interval2_Prompt = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: jsPsych.timelineVariable('instructions_second_interval'),
     choices: ['Play Clip 2'],
     post_trial_gap: post_prompt_iti
 };
     
-    
-
-    
-
-    
-    
-var Interval2_Prompt = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: '',
-    choices: ['Play Clip 2'],
-    post_trial_gap: post_prompt_iti
-};
-
 
 var Interval1_Training = {
     type: jsPsychAudioButtonResponse,
