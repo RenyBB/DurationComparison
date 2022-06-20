@@ -69,9 +69,9 @@ for (i=0; i<stimuli_combinations.length; i ++) {
 
 for (i=0; i<stimuli_combinations.length; i ++) {
     if (stimuli_combinations[i].first_interval == "iso" || stimuli_combinations[i].first_interval == "anis" || stimuli_combinations[i].first_interval == "empty")
-            {stimuli_combinations[i].instructions_first_interval = ['Next pair of audio clips. In the first clip consider the duration from the start of the first beep to the end of the last beep.']}
+            {stimuli_combinations[i].instructions_first_interval = ['Next pair of audio clips.<br>In the first clip consider the duration from the start of the first beep to the end of the last beep.']}
     else if (stimuli_combinations[i].first_interval == "continuous")
-            {stimuli_combinations[i].instructions_first_interval = ['Next pair of audio clips. In the first clip consider the duration from the start of the constant beep until the end of the constant beep.'] }  
+            {stimuli_combinations[i].instructions_first_interval = ['Next pair of audio clips.<br>In the first clip consider the duration from the start of the constant beep until the end of the constant beep.'] }  
     
     if (stimuli_combinations[i].second_interval == "iso" || stimuli_combinations[i].second_interval == "anis" || stimuli_combinations[i].second_interval == "empty")
             {stimuli_combinations[i].instructions_second_interval = ['In the second clip consider the duration from the start of the first beep to the end of the last beep.']}
