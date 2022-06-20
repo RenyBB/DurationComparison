@@ -171,14 +171,28 @@ var Interval1_Prompt = {
 
 var Interval1_Prompt_Training_Ex1 = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: ['You will now hear the first example pair.'],
+    stimulus: ['You will now hear the first clip of the pair.<br>Consider the duration from the start of the first beep to the end of the lasp beep'],
     choices: ['Play Clip 1'],
     post_trial_gap: post_prompt_iti
 };
+var Interval2_Prompt_Training_Ex1 = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: ['You will now hear the second clip in the pair.<br>Consider the duration from the start of the first beep to the end of the last beep.'],
+    choices: ['Play Clip 2'],
+    post_trial_gap: post_prompt_iti
+};
+    
+    
 var Interval1_Prompt_Training_Ex2 = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: ['You will now hear the second example pair.'],
+    stimulus: ['You will now hear the first clip of the pair.<br>Consider the duration from the start of the constant beep until the end of the constant beep'],
     choices: ['Play Clip 1'],
+    post_trial_gap: post_prompt_iti
+};
+var Interval2_Prompt_Training_E2 = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: ['You will now hear the second clip in the pair.<br>Consider the duration from the start of the first beep to the end of the last beep'],
+    choices: ['Play Clip 2'],
     post_trial_gap: post_prompt_iti
 };
 
@@ -188,7 +202,19 @@ var Interval2_Prompt = {
     choices: ['Play Clip 2'],
     post_trial_gap: post_prompt_iti
 };
+    
+    
 
+    
+
+    
+    
+var Interval2_Prompt = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '',
+    choices: ['Play Clip 2'],
+    post_trial_gap: post_prompt_iti
+};
 
 
 var Interval1_Training = {
@@ -211,7 +237,7 @@ var Interval2_Training = {
         // Pitch dicrimination question - appears in both training and testing phase
 var DuractionComparison_Training1 = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'Was the 1st or the 2nd clip longer?<br><br>Clip 1: consider the duration from the start of the first beep to the end of the lasp beep<br>Clip 2: consider the consider the duration from the start of the first beep to the end of the last beep (note that this clip contained only 2 beeps).',
+    stimulus: 'Was the 1st or the 2nd clip longer?<br><br>Clip 1: consider the duration from the start of the first beep to the end of the lasp beep<br><br>Clip 2: consider the duration from the start of the first beep to the end of the last beep<bt>(note that this clip contained only 2 beeps).',
     choices: ['First clip was longer', 'Second clip was longer', 'The clips were equal'],
     on_finish: function (data) {
             data.first_stimulus = 'Stimuli/DurationComparison/iso_3000ms_2Hz.wav';
@@ -264,7 +290,7 @@ var Interval4_Training = {
     // Pitch dicrimination question - appears in both training and testing phase
 var DuractionComparison_Training2 = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'Was the 1st or the 2nd clip longer?<br><br>Clip 1: consider the duration from the start of the constant beep until the end of the constant beep<br>Clip 2: consider the duration from the start of the first beep to the end of the last beep',
+    stimulus: 'Was the 1st or the 2nd clip longer?<br><br>Clip 1: consider the duration from the start of the constant beep until the end of the constant beep<br><br>Clip 2: consider the duration from the start of the first beep to the end of the last beep',
     choices: ['First clip was longer', 'Second clip was longer', 'The clips were equal'],
     on_finish: function (data) {
             data.first_stimulus = 'Stimuli/DurationComparison/continuous_1000ms.wav';
@@ -340,7 +366,7 @@ var FreeText = {
 }
 
 var training_procedure1 = {
-        timeline: [Interval1_Prompt_Training_Ex1,Interval1_Training,Interval2_Prompt,Interval2_Training, DuractionComparison_Training1, DuractionComparison_Feedback1],
+        timeline: [Interval1_Prompt_Training_Ex1,Interval1_Training,Interval2_Prompt_Training_Ex1,Interval2_Training, DuractionComparison_Training1, DuractionComparison_Feedback1],
     };
     
     
@@ -356,7 +382,7 @@ var training_procedure1 = {
 }
     
 var training_procedure2 = {
-        timeline: [Interval1_Prompt_Training_Ex2,Interval3_Training,Interval2_Prompt,Interval4_Training, DuractionComparison_Training2, DuractionComparison_Feedback2],
+        timeline: [Interval1_Prompt_Training_Ex2,Interval3_Training,Interval2_Prompt_Training_Ex2,Interval4_Training, DuractionComparison_Training2, DuractionComparison_Feedback2],
     };
     
       var loop_node_training2 = {
