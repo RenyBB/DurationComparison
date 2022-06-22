@@ -241,7 +241,7 @@ var Interval2_Training = {
         // Pitch dicrimination question - appears in both training and testing phase
 var DuractionComparison_Training1 = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'Was the 1st or the 2nd clip longer?<br><br>Clip 1: consider the duration from the start of the first beep to the end of the last beep<br><br>Clip 2: consider the duration from the start of the first beep to the end of the last beep<bt>(note that this clip contained only 2 beeps).',
+    stimulus: 'Was the 1st or the 2nd clip longer?<br><br>Clip 1: consider the duration from the start of the first beep to the end of the last beep<br><br>Clip 2: consider the duration from the start of the first beep to the end of the last beep<br>(note that this clip contained only 2 beeps).',
     choices: ['Clip 1 was longer', 'Clip 2 was longer', 'The clips were equal'],
     on_finish: function (data) {
             data.first_stimulus = 'Stimuli/DurationComparison/iso_3000ms_2Hz.wav';
