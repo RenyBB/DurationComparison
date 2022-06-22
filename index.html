@@ -177,7 +177,7 @@ var testInstructions3 = {
 
 var Interval1_Prompt_Training_Ex1 = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: ['You will now hear the first clip of the pair.<br>Consider the duration from the start of the first beep to the end of the last beep'],
+    stimulus: ['Example 1<br><br>You will now hear the first clip of the pair.<br>Consider the duration from the start of the first beep to the end of the last beep'],
     choices: ['Play Clip 1'],
     post_trial_gap: post_prompt_iti
 };
@@ -191,7 +191,7 @@ var Interval2_Prompt_Training_Ex1 = {
     
 var Interval1_Prompt_Training_Ex2 = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: ['You will now hear the first clip of the pair.<br>Consider the duration from the start of the constant beep until the end of the constant beep'],
+    stimulus: ['Example 2<br><br>You will now hear the first clip of the pair.<br>Consider the duration from the start of the constant beep until the end of the constant beep'],
     choices: ['Play Clip 1'],
     post_trial_gap: post_prompt_iti
 };
@@ -242,7 +242,7 @@ var Interval2_Training = {
 var DuractionComparison_Training1 = {
     type: jsPsychHtmlButtonResponse,
     stimulus: 'Was the 1st or the 2nd clip longer?<br><br>Clip 1: consider the duration from the start of the first beep to the end of the last beep<br><br>Clip 2: consider the duration from the start of the first beep to the end of the last beep<bt>(note that this clip contained only 2 beeps).',
-    choices: ['First clip was longer', 'Second clip was longer', 'The clips were equal'],
+    choices: ['Clip 1 was longer', 'Clip 2 was longer', 'The clips were equal'],
     on_finish: function (data) {
             data.first_stimulus = 'Stimuli/DurationComparison/iso_3000ms_2Hz.wav';
             data.second_stimulus = 'Stimuli/DurationComparison/empty_1500ms.wav';
@@ -295,7 +295,7 @@ var Interval4_Training = {
 var DuractionComparison_Training2 = {
     type: jsPsychHtmlButtonResponse,
     stimulus: 'Was the 1st or the 2nd clip longer?<br><br>Clip 1: consider the duration from the start of the constant beep until the end of the constant beep<br><br>Clip 2: consider the duration from the start of the first beep to the end of the last beep',
-    choices: ['First clip was longer', 'Second clip was longer', 'The clips were equal'],
+    choices: ['Clip 1 was longer', 'Clip 2 was longer', 'The clips were equal'],
     on_finish: function (data) {
             data.first_stimulus = 'Stimuli/DurationComparison/continuous_1000ms.wav';
             data.second_stimulus = 'Stimuli/DurationComparison/anis_3000ms_2Hz.wav';
@@ -349,7 +349,7 @@ var Interval2_Stimulus = {
 var DuractionComparison_Resp = {
     type: jsPsychHtmlButtonResponse,
     stimulus: 'Was the 1st or the 2nd clip longer?',
-    choices: ['First clip was longer', 'Second clip was longer', 'The clip were equal'],
+    choices: ['Clip 1 was longer', 'Clip 2 was longer', 'The clips were equal'],
     on_finish: function (data) {
             data.test = 1;
             console.log(jsPsych.data.get().select('test').values.length);
